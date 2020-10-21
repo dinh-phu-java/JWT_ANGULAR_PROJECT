@@ -21,12 +21,13 @@ export class AuthenticationService {
 
   constructor(private http: HttpClient) { }
 
-  login(user: User): Observable<HttpResponse<any> | HttpErrorResponse> {
+  login(user: User): Observable<HttpResponse<User>> {
     return this.http
-      .post<HttpResponse<any> | HttpErrorResponse>(`${this.host}/user/login`, {
+      .post<User>(`${this.host}/user/login`, 
         user
-      }, { observe: 'response' })
+      , { observe: 'response' })
   }
+  
 
   register(user: User): Observable<User | HttpErrorResponse> {
     return this.http
